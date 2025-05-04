@@ -1,4 +1,4 @@
-##SKYST LionKiing Front Repository##
+**SKYST LionKiing Front Repository**
 
 - 연세대학교 멋쟁이사자 13기
 - 기획 : 장서린
