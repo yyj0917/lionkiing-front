@@ -7,7 +7,7 @@ interface VoteModalProps {
   artistId: string;
   onClose: () => void;
   mileage: number;
-  onVoteSuccess: (newScore: number, usedMileage: number) => void;
+  onVoteSuccess: (newScore: number) => void;
 }
 
 export default function VoteModal({
@@ -30,7 +30,7 @@ export default function VoteModal({
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSubmit();
+      void handleSubmit();
     }
   };
 
@@ -49,11 +49,11 @@ export default function VoteModal({
 
     try {
       setLoading(true);
-      const { newScore, usedMileage } = await submitVotes(
+      const { success, availableVotes } = await submitVotes(
         artistId,
         numericPoint,
       );
-      onVoteSuccess(newScore, usedMileage);
+      onVoteSuccess(availableVotes);
       onClose(); // 투표 후 모달 닫기
     } catch (err) {
       setError('투표에 실패했습니다. 다시 시도해주세요.');

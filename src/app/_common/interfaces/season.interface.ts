@@ -1,8 +1,7 @@
+/* eslint-disable */
+
 import { Video } from './video.interface';
 
-/**
- * Season 인터페이스
- */
 export interface Season {
   id: string;
   season_no: number;

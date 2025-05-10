@@ -1,55 +1,30 @@
+/* eslint-disable */
+
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ArtistGrid from './_components/ArtistGrid';
 import PageHeader from './_components/PageHeader';
 import VoteModal from './_components/VoteModal';
-import { getBandFinalInfo } from '@/app/_common/apis/band-final-info';
-import { getAvailableVotes } from '@/app/_common/apis/available-votes';
-import { BandFinalInfo } from '@/app/_common/interfaces/band-info.interface';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import TVDropZone from '../(home)/_components/tv-dropzone';
-import RankBoard from '../(home)/_components/rank-board';
-import VoteSection from './_components/Votesection';
-import Mileage from './_components/Mileage';
 
-interface Artist {
-  id: string;
-  name: string;
-  image: string;
-  score: number;
-}
+const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
+  id: `${i + 1}`,
+  name: `이름 ${i + 1}`,
+  image: '/image/dog.png',
+  score: 0,
+}));
 
 export default function Final() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [artists, setArtists] = useState<Artist[]>([]);
-  const [bandFinalInfo, setBandFinalInfo] = useState<BandFinalInfo[]>([]);
+  const [artists, setArtists] = useState(mockArtists);
   const [votedIds, setVotedIds] = useState<string[]>([]);
-  const [mileage, setMileage] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const bandData = await getBandFinalInfo();
-      setBandFinalInfo(bandData);
-
-      const mapped = bandData.map(band => ({
-        id: band.id,
-        name: band.band.name,
-        image: band.band.image,
-        score: band.voteCount ?? 0,
-      }));
-      setArtists(mapped);
-
-      const mileageData = await getAvailableVotes();
-      setMileage(mileageData.availableVotes);
-    };
-
-    fetchData();
-  }, []);
 
   const handleVote = (id: string) => {
     setSelectedId(id);
+    console.log('s');
   };
 
   const closeModal = () => {
@@ -57,48 +32,27 @@ export default function Final() {
   };
 
   return (
-    <div
-      className='p-8'
-      style={{
-        backgroundImage: 'url(/images/final-background.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        minHeight: '100vh',
-      }}
-    >
+    <div className='p-8'>
       <DndProvider backend={HTML5Backend}>
-        <PageHeader title='2025 청춘무대 본선' />
+        <PageHeader title='본선진출' />
         <TVDropZone />
-        <RankBoard bandFinalInfo={bandFinalInfo} />
-        <VoteSection vote='투표하기' />
-        <Mileage mileage={mileage} />
         <ArtistGrid artists={artists} onVote={handleVote} votedIds={votedIds} />
-        {selectedId && mileage !== null && (
+
+        {selectedId && (
           <VoteModal
             artistId={selectedId}
             onClose={closeModal}
-            mileage={mileage}
-            onVoteSuccess={(newScore, usedMileage) => {
-              setArtists(prev =>
+            mileage={100}
+            onVoteSuccess={availableVotes => {
+              void setArtists(prev =>
                 prev.map(artist =>
                   artist.id === selectedId
-                    ? { ...artist, score: newScore }
+                    ? { ...artist, score: availableVotes }
                     : artist,
                 ),
               );
-
-              setMileage(prev => {
-                if (
-                  typeof prev === 'number' &&
-                  typeof usedMileage === 'number'
-                ) {
-                  return prev - usedMileage;
-                }
-                return prev ?? 0;
-              });
-
-              setVotedIds(prev => [...prev, selectedId]);
-              closeModal();
+              void setVotedIds(prev => [...prev, selectedId]);
+              void closeModal();
             }}
           />
         )}
