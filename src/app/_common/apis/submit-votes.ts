@@ -6,10 +6,9 @@ const MOCK_USER_ID = '3e5d1e46-80e5-4a25-8548-d7ee712d8c3a';
 export const submitVotes = async (videoId: string, votes: number) => {
   try {
     await axiosInstance.post(
-      '/votes/submit',
+      `/votes/${videoId}`,
       {
-        videoId,
-        votes,
+        count: votes,
       },
       {
         headers: {
