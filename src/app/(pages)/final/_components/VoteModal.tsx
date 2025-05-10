@@ -39,9 +39,9 @@ export default function VoteModal({
     }
 
     try {
-      // TODO: 서버 요청 로직 구현
+      // 실제 서버 연동은 이 부분에서 진행
       const updatedScore = 333 + numericPoint; // 예시 응답 처리
-      onVoteSuccess(updatedScore);
+      onVoteSuccess(updatedScore); // ✅ 성공 시 처리
     } catch (err) {
       setError('투표에 실패했습니다. 다시 시도해주세요.');
     }

@@ -8,16 +8,17 @@ import VoteModal from './_components/VoteModal';
 const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
   id: `${i + 1}`,
   name: `이름 ${i + 1}`,
-  image: '/image/dog.png', // 기본 이미지 설정
+  image: '/image/dog.png',
   score: 333,
 }));
 
 export default function Final() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [artists, setArtists] = useState(mockArtists);
+  const [votedIds, setVotedIds] = useState<string[]>([]); // ✅ 투표 완료 id 저장
 
   const handleVote = (id: string) => {
-    setSelectedId(id); // 모달을 띄우기 위해 선택한 id 저장
+    setSelectedId(id);
   };
 
   const closeModal = () => {
@@ -27,11 +28,11 @@ export default function Final() {
   return (
     <div className='p-8'>
       <PageHeader title='본선진출' />
-      <ArtistGrid artists={mockArtists} onVote={handleVote} />
+      <ArtistGrid artists={artists} onVote={handleVote} votedIds={votedIds} />
 
       {selectedId && (
         <VoteModal
-          artistId='selectedId'
+          artistId={selectedId}
           onClose={closeModal}
           onVoteSuccess={newScore => {
             setArtists(prev =>
@@ -41,6 +42,7 @@ export default function Final() {
                   : artist,
               ),
             );
+            setVotedIds(prev => [...prev, selectedId]); // ✅ 성공 시에만 voted 처리
             closeModal();
           }}
         />

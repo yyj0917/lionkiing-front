@@ -1,6 +1,6 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 interface ArtistCardProps {
   id: string;
@@ -8,6 +8,7 @@ interface ArtistCardProps {
   score: number;
   image: string;
   onVote: () => void;
+  voted: boolean;
 }
 
 export default function ArtistCard({
@@ -16,18 +17,18 @@ export default function ArtistCard({
   score,
   image,
   onVote,
+  voted,
 }: ArtistCardProps) {
-  const [voted, setVoted] = useState(false);
   const router = useRouter();
+
   const handleVote = () => {
-    onVote();
-    setVoted(true);
+    if (!voted) onVote(); // 이미 투표된 경우 중복 방지
   };
 
-  //밴드 페이지로 전환
   const handleImageClick = () => {
-    router.push('/band/${id}');
+    router.push(`/band/${id}`);
   };
+
   return (
     <div className='text-center'>
       <img
@@ -37,7 +38,7 @@ export default function ArtistCard({
         className='w-full h-40 object-cover mb-2 rounded cursor-pointer transition hover:opacity-80'
       />
       <p className='font-bold'>{name}</p>
-      <p className='text-sm'>점수:{score}</p>
+      <p className='text-sm'>점수: {score}</p>
       <button
         onClick={handleVote}
         className={`mt-1 text-white text-sm px-3 py-1 rounded-md ${
