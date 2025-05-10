@@ -20,7 +20,7 @@
 
 | 분류       | 기술 상세 |
 |------------|-----------|
-| **Frontend** | Next.js 14 (App Router)<br>React Hooks<br>Tailwind CSS |
+| **Frontend** | Next.js 14 (App Router)<br>React Hooks<br>Tailwind CSS<br>typeScript|
 | **Drag & Drop** | React DnD (HTML5 Backend) |
 | **HTTP Client** | Axios |
 | **State** | useState, useEffect 등 React 기본 훅 |
