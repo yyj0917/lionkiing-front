@@ -25,6 +25,8 @@
 
 ---
 
+🦁 배포 링크
+https://lionkiing-front.vercel.app/
 
 📸 화면 예시
 ![스크린샷 2025-05-11 075051](https://github.com/user-attachments/assets/4910c22f-7155-4174-b336-f3076613d78a)
