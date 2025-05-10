@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../styles/globals.css';
+import GNB from './_common/components/gnb';
 
 export const metadata: Metadata = {
   title: 'SKYST LionKiing',
@@ -13,7 +14,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body className='w-screen h-screen'>
+        <main className='min-w-[360px] max-w-[415px] lg:max-w-[375px] h-screen mx-auto bg-gray-100 rounded-4xl'>
+          {children}
+          <GNB />
+        </main>
+      </body>
     </html>
   );
 }

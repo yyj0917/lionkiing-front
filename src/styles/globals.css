@@ -1,8 +1,16 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 @layer theme, base, components, utilities;
+
+@theme {
+  --color-primary-yellow: #e2c005;
+  --color-primary-blue: #3f4794;
+
+  --color-secondary-yellow: #ffd54f;
+  --color-secondary-blue: #4250b5;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -117,7 +125,18 @@
   * {
     @apply border-border outline-ring/50;
   }
+  * {
+    font-family: 'SF_HambakSnow', sans-serif;
+    font-style: normal;
+  }
   body {
     @apply bg-background text-foreground;
   }
+}
+@font-face {
+  font-family: 'SF_HambakSnow';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
