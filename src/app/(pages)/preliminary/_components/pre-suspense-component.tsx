@@ -58,7 +58,7 @@ export default function PreSuspenseComponent() {
           <img
             src='/images/preliminary-background.jpg'
             alt='preliminary-background'
-            className='size-full object-fill rounded-4xl'
+            className='absolute size-full object-fill rounded-4xl'
           />
           <section className='relative w-full h-full flex items-center justify-center rounded-4xl'>
             <Suspense fallback={<div>Loading...</div>}>

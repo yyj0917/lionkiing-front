@@ -32,7 +32,7 @@ export default function BandCard({
         alt={finalBandDetail.band.name}
         className={
           'z-20' +
-          'size-full object-cover rounded-xl cursor-grab' +
+          'absolute size-full object-cover rounded-xl cursor-grab' +
           (isDragging ? ' opacity-0' : '')
         }
       />
