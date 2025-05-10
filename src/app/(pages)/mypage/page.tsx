@@ -11,6 +11,7 @@ export default function MyPage() {
   useEffect(() => {
     const fetchUserVote = async () => {
       const userVote = await getUserVote();
+      console.log(userVote);
       setVideoList(userVote);
     };
     fetchUserVote();
