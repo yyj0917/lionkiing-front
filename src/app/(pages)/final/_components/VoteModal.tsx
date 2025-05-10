@@ -7,7 +7,7 @@ interface VoteModalProps {
   artistId: string;
   onClose: () => void;
   mileage: number;
-  onVoteSuccess: (newScore: number) => void;
+  onVoteSuccess: () => void;
 }
 
 export default function VoteModal({
@@ -49,11 +49,8 @@ export default function VoteModal({
 
     try {
       setLoading(true);
-      const { success, availableVotes } = await submitVotes(
-        artistId,
-        numericPoint,
-      );
-      onVoteSuccess(availableVotes);
+      await submitVotes(artistId, numericPoint);
+      onVoteSuccess();
       onClose(); // 투표 후 모달 닫기
     } catch (err) {
       setError('투표에 실패했습니다. 다시 시도해주세요.');

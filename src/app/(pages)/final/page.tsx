@@ -2,13 +2,15 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ArtistGrid from './_components/ArtistGrid';
 import PageHeader from './_components/PageHeader';
 import VoteModal from './_components/VoteModal';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import TVDropZone from '../(home)/_components/tv-dropzone';
+import { getBandFinalInfo } from '@/app/_common/apis/band-final-info';
+import { getAvailableVotes } from '@/app/_common/apis/available-votes';
 
 const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
   id: `${i + 1}`,
@@ -18,13 +20,33 @@ const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
 }));
 
 export default function Final() {
+  const [refetch, setRefetch] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [artists, setArtists] = useState(mockArtists);
   const [votedIds, setVotedIds] = useState<string[]>([]);
+  const [mileage, setMileage] = useState<number>(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const bandData = await getBandFinalInfo();
+
+      const mapped = bandData.map(band => ({
+        id: band.id,
+        name: band.band.name,
+        image: band.band.image,
+        score: band.voteCount ?? 0,
+      }));
+      setArtists(mapped);
+
+      const mileageData = await getAvailableVotes();
+      setMileage(mileageData.availableVotes);
+    };
+
+    fetchData();
+  }, [refetch]);
 
   const handleVote = (id: string) => {
     setSelectedId(id);
-    console.log('s');
   };
 
   const closeModal = () => {
@@ -42,18 +64,8 @@ export default function Final() {
           <VoteModal
             artistId={selectedId}
             onClose={closeModal}
-            mileage={100}
-            onVoteSuccess={availableVotes => {
-              void setArtists(prev =>
-                prev.map(artist =>
-                  artist.id === selectedId
-                    ? { ...artist, score: availableVotes }
-                    : artist,
-                ),
-              );
-              void setVotedIds(prev => [...prev, selectedId]);
-              void closeModal();
-            }}
+            mileage={mileage}
+            onVoteSuccess={() => setRefetch(prev => !prev)}
           />
         )}
       </DndProvider>
