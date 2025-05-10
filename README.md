@@ -30,6 +30,9 @@
 ![image](https://github.com/user-attachments/assets/f165b497-470c-4115-b111-2c7ba3d7b042)
 
 
+🧐[청춘무대.pdf](https://github.com/user-attachments/files/20144087/default.pdf)
+
+
 
 👨‍💻 라이온키잉이들
 - 🎼 기획 & 디자인: 장서린
