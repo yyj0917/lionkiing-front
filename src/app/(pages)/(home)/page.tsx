@@ -1,34 +1,21 @@
-import TopBar from './_components/top-bar';
+import SearchBar from './_components/search-bar';
 import RankBoard from './_components/rank-board';
+import { getBandFinalInfo } from '@/app/_common/apis/band-final-info';
+import TVDropZone from './_components/tv-dropzone';
+import MainSection from './_components/main-section';
+import { CircleChevronRight } from 'lucide-react';
+import Link from 'next/link';
+export default async function HomePage() {
+  const bandFinalInfo = await getBandFinalInfo();
 
-export default function HomePage() {
   return (
-    <div
-      className='relative px-8 pt-4 pb-20 w-full h-full flex flex-col items-center rounded-4xl overflow-y-auto bg-gradient-to-b
-            from-[#74c2d7]
-            to-[#363d80] scrollbar-hide'
-    >
-      {/* <div
-        style={{
-          backgroundImage: 'url(/images/festival-main.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          opacity: 0.5,
-          zIndex: -1,
-          borderRadius: '40px',
-        }}
-      /> */}
+    <div className='relative px-8 pt-4 pb-20 w-full h-full flex flex-col items-start rounded-4xl overflow-y-auto  scrollbar-hide'>
       <div
-        className='w-full h-auto bg-gradient-to-b
-            from-[#74c2d7]
-            to-[#363d80]'
         style={{
+          backgroundImage: 'url(/images/main-background.jpg)',
+          backgroundSize: 'auto',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'repeat',
           position: 'absolute',
           top: 0,
           left: 0,
@@ -39,13 +26,17 @@ export default function HomePage() {
           borderRadius: '40px',
         }}
       />
-      <TopBar />
-      <main className='pt-8 pb-10 w-full h-auto flex flex-col items-center gap-10'>
-        <RankBoard />
-        <button className='py-4  w-full h-auto bg-white text-primary-yellow text-2xl font-bold rounded-xl cursor-pointer'>
-          더 많은 영상 보러가기
-        </button>
-      </main>
+
+      {/* Search Bar */}
+      <SearchBar />
+      {/* header text */}
+      <header className='w-full h-auto flex justify-start items-center gap-3'>
+        <p className='text-2xl font-bold text-primary-yellow'>2025 청춘무대</p>
+        <Link href='/'>
+          <CircleChevronRight className='size-6 text-black bg-white rounded-full' />
+        </Link>
+      </header>
+      <MainSection bandFinalInfo={bandFinalInfo} />
     </div>
   );
 }
