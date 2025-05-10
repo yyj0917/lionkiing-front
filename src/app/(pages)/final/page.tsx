@@ -19,6 +19,7 @@ export default function Final() {
 
   const handleVote = (id: string) => {
     setSelectedId(id);
+    console.log('s');
   };
 
   const closeModal = () => {
