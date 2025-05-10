@@ -9,7 +9,7 @@ const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
   id: `${i + 1}`,
   name: `이름 ${i + 1}`,
   image: '/image/dog.png',
-  score: 333,
+  score: 0,
 }));
 
 export default function Final() {
@@ -42,7 +42,7 @@ export default function Final() {
                   : artist,
               ),
             );
-            setVotedIds(prev => [...prev, selectedId]); // ✅ 성공 시에만 voted 처리
+            setVotedIds(prev => [...prev, selectedId]);
             closeModal();
           }}
         />
