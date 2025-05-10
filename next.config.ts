@@ -3,7 +3,7 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: ['i.namu.wiki'],
+    domains: ['i.namu.wiki', 'velog.velcdn.com'],
   },
   /* config options here */
   webpack(config) {
