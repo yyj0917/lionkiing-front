@@ -34,11 +34,17 @@ export default function BandCard({
         alt={finalBandDetail.band.name}
         fill
         className={
+          'z-20' +
           'object-cover rounded-xl cursor-grab' +
           (isDragging ? ' opacity-0' : '')
         }
       />
-      {/* {rank && <RankBadge rank={rank} />} */}
+      {/* 그라데이션 효과 */}
+      <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-b-xl pointer-events-none'></div>
+      {/* 랭크 표시 */}
+      <p className='text-2xl font-bold text-white absolute bottom-2 left-2'>
+        #{rank}등
+      </p>
     </motion.div>
   );
 }
