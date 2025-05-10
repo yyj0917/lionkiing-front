@@ -30,6 +30,7 @@
 
 
 📸 화면 예시
+![image](https://github.com/user-attachments/assets/f165b497-470c-4115-b111-2c7ba3d7b042)
 
 
 
