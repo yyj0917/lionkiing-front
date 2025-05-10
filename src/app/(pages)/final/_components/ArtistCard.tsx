@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useDrag } from 'react-dnd';
 
 interface ArtistCardProps {
   id: string;
@@ -25,6 +26,11 @@ export default function ArtistCard({
   const handleClick = () => {
     router.push(`/band/${id}`);
   };
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'VIDEO_THUMB',
+    item: { id: id },
+    collect: monitor => ({ isDragging: !!monitor.isDragging() }),
+  });
 
   return (
     <div className='w-[100px] bg-white shadow-md rounded-xl p-3 flex flex-col items-center space-y-1'>
@@ -33,6 +39,7 @@ export default function ArtistCard({
         onClick={handleClick}
       >
         <Image
+          ref={dragRef as unknown as React.RefObject<HTMLImageElement>}
           src={image}
           alt={name}
           fill

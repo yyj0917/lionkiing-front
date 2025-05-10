@@ -4,8 +4,12 @@ import { useEffect, useState } from 'react';
 import ArtistGrid from './_components/ArtistGrid';
 import PageHeader from './_components/PageHeader';
 import VoteModal from './_components/VoteModal';
-import { getBandFinalInfo } from '@/app/_common/apis/band-final-info';
+import { getBandFinalInfo } from '@/app/_common/apis/band-final-info'; //api 연결
 import { BandFinalInfo } from '@/app/_common/interfaces/band-info.interface';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import TVDropZone from '../(home)/_components/tv-dropzone';
+import RankBoard from '../(home)/_components/rank-board';
 
 interface Artist {
   id: string;
@@ -17,12 +21,13 @@ interface Artist {
 export default function Final() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [artists, setArtists] = useState<Artist[]>([]);
+  const [bandFinalInfo, setBandFinalInfo] = useState<BandFinalInfo[]>([]);
   const [votedIds, setVotedIds] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchArtists = async () => {
       const bandData: BandFinalInfo[] = await getBandFinalInfo();
-
+      setBandFinalInfo(bandData);
       const mapped = bandData.map(band => ({
         id: band.id,
         name: band.band.name,
@@ -46,26 +51,29 @@ export default function Final() {
 
   return (
     <div className='p-8'>
-      <PageHeader title='본선진출' />
-      <ArtistGrid artists={artists} onVote={handleVote} votedIds={votedIds} />
-
-      {selectedId && (
-        <VoteModal
-          artistId={selectedId}
-          onClose={closeModal}
-          onVoteSuccess={newScore => {
-            setArtists(prev =>
-              prev.map(artist =>
-                artist.id === selectedId
-                  ? { ...artist, score: newScore }
-                  : artist,
-              ),
-            );
-            setVotedIds(prev => [...prev, selectedId]);
-            closeModal();
-          }}
-        />
-      )}
+      <DndProvider backend={HTML5Backend}>
+        <PageHeader title='본선진출' />
+        <TVDropZone />
+        <RankBoard bandFinalInfo={bandFinalInfo} />
+        <ArtistGrid artists={artists} onVote={handleVote} votedIds={votedIds} />
+        {selectedId && (
+          <VoteModal
+            artistId={selectedId}
+            onClose={closeModal}
+            onVoteSuccess={newScore => {
+              setArtists(prev =>
+                prev.map(artist =>
+                  artist.id === selectedId
+                    ? { ...artist, score: newScore }
+                    : artist,
+                ),
+              );
+              setVotedIds(prev => [...prev, selectedId]);
+              closeModal();
+            }}
+          />
+        )}
+      </DndProvider>
     </div>
   );
 }
