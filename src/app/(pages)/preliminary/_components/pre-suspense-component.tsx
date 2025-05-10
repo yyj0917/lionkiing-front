@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { voteVideo } from '@/app/_common/apis/user-vote';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import { BandPreliminaryInfo } from '@/app/_common/interfaces/band-info.interface';
 import { getBandPreliminaryInfo } from '@/app/_common/apis/band-preliminary-info';
@@ -9,6 +9,7 @@ import Image from 'next/image';
 import ReactPlayer from 'react-player';
 
 export default function PreSuspenseComponent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const videoId = searchParams.get('videoId');
 
@@ -37,11 +38,16 @@ export default function PreSuspenseComponent() {
           setPreBandInfo(response);
         }
       } else {
+        // videoId가 없는 경우 첫 번째 response의 videoId를 쿼리 파라미터로 설정
+        if (response.length > 0) {
+          const firstVideoId = response[0].id;
+          router.replace(`/preliminary?videoId=${firstVideoId}`);
+        }
         setPreBandInfo(response);
       }
     };
     void fetchPreBandInfo();
-  }, [videoId]);
+  }, [videoId, router]);
   return (
     <div className='relative h-screen overflow-y-scroll snap-y snap-mandatory'>
       {preBandInfo.map((item, index) => (
