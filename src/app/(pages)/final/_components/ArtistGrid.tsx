@@ -19,7 +19,7 @@ export default function ArtistGrid({
   votedIds,
 }: ArtistGridProps) {
   return (
-    <div className='grid grid-cols-3 gap-6 justify-items-center'>
+    <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 justify-items-center'>
       {artists.map(artist => (
         <ArtistCard
           key={artist.id}

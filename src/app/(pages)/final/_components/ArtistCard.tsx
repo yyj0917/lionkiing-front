@@ -1,12 +1,14 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { useDrag } from 'react-dnd';
 
 interface ArtistCardProps {
   id: string;
   name: string;
-  score: number;
   image: string;
+  score: number;
   onVote: () => void;
   voted: boolean;
 }
@@ -14,34 +16,41 @@ interface ArtistCardProps {
 export default function ArtistCard({
   id,
   name,
-  score,
   image,
+  score,
   onVote,
   voted,
 }: ArtistCardProps) {
   const router = useRouter();
 
-  const handleVote = () => {
-    if (!voted) onVote(); // 이미 투표된 경우 중복 방지
-  };
-
-  const handleImageClick = () => {
+  const handleClick = () => {
     router.push(`/band/${id}`);
   };
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'VIDEO_THUMB',
+    item: { id: id },
+    collect: monitor => ({ isDragging: !!monitor.isDragging() }),
+  });
 
   return (
-    <div className='text-center'>
-      <img
-        src={image}
-        alt={`${name} 이미지`}
-        onClick={handleImageClick}
-        className='w-full h-40 object-cover mb-2 rounded cursor-pointer transition hover:opacity-80'
-      />
-      <p className='font-bold'>{name}</p>
-      <p className='text-sm'>점수: {score}</p>
+    <div className='w-[100px] bg-white shadow-md rounded-xl p-3 flex flex-col items-center space-y-1'>
+      <div
+        className='w-[80px] h-[80px] relative cursor-pointer'
+        onClick={handleClick}
+      >
+        <Image
+          ref={dragRef as unknown as React.RefObject<HTMLImageElement>}
+          src={image}
+          alt={name}
+          fill
+          className='object-cover rounded-md'
+        />
+      </div>
+      <h3 className='text-center text-xs font-semibold break-keep'>{name}</h3>
+      <p className='text-[11px]'>점수: {score}</p>
       <button
-        onClick={handleVote}
-        className={`mt-1 text-white text-sm px-3 py-1 rounded-md ${
+        onClick={onVote}
+        className={`w-full py-1 text-xs rounded-md text-white font-semibold ${
           voted
             ? 'bg-green-400 cursor-not-allowed'
             : 'bg-gray-400 hover:bg-gray-600'
