@@ -43,8 +43,8 @@ export default function RankBoard() {
           transition={{ duration: 1, delay: 0.4 }}
           className='w-full h-auto flex justify-around items-center mx-auto'
         >
-          <BandCard rank={index * 2} />
-          <BandCard rank={index * 2 + 1} />
+          <BandCard rank={(index + 1) * 2} />
+          <BandCard rank={(index + 1) * 2 + 1} />
         </motion.div>
       ))}
     </section>

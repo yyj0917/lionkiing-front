@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
+import RankBadge from './rank-badge';
+
 export default function BandCard({ rank }: { rank: number | null }) {
   const handleBandClick = () => {};
 
@@ -18,6 +20,7 @@ export default function BandCard({ rank }: { rank: number | null }) {
         fill
         className='object-cover rounded-xl'
       />
+      {rank && <RankBadge rank={rank} />}
     </motion.div>
   );
 }
