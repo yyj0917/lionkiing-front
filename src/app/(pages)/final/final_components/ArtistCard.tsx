@@ -2,14 +2,14 @@ interface ArtistCardProps {
   name: string;
   score: number;
   image: string;
-  onvote: () => void;
+  onVote: () => void;
 }
 
 export default function ArtistCard({
   name,
   score,
   image,
-  onvote,
+  onVote,
 }: ArtistCardProps) {
   return (
     <div>
@@ -20,7 +20,7 @@ export default function ArtistCard({
       <p className='font-bold text-center'>{name}</p>
       <p className='text-sm text-center'>점수:{score}</p>
       <button
-        onClick={onvote}
+        onClick={onVote}
         className='mt-1 bg-gray-500 text-white text-sm px-3 py-1 rounded-md'
       >
         투표하기
