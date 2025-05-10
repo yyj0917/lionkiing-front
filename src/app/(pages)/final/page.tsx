@@ -59,7 +59,7 @@ export default function Final() {
 
   return (
     <div
-      className='p-8'
+      className='p-8 rounded-4xl'
       style={{
         backgroundImage: 'url(/images/final-background.png)',
         backgroundSize: 'cover',

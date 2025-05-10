@@ -55,11 +55,10 @@ export default function PreSuspenseComponent() {
           key={item.band.id}
           className='relative w-full h-screen snap-start flex items-center justify-center'
         >
-          <Image
+          <img
             src='/images/preliminary-background.jpg'
             alt='preliminary-background'
-            fill
-            className='object-fill rounded-4xl'
+            className='size-full object-fill rounded-4xl'
           />
           <section className='relative w-full h-full flex items-center justify-center rounded-4xl'>
             <Suspense fallback={<div>Loading...</div>}>

@@ -38,12 +38,11 @@ export default function ArtistCard({
         className='w-[80px] h-[80px] relative cursor-pointer'
         onClick={handleClick}
       >
-        <Image
+        <img
           ref={dragRef as unknown as React.RefObject<HTMLImageElement>}
           src={image}
           alt={name}
-          fill
-          className='object-cover rounded-md'
+          className='size-full object-cover rounded-md'
         />
       </div>
       <h3 className='text-center text-xs font-semibold break-keep'>{name}</h3>

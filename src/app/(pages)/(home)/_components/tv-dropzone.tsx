@@ -10,7 +10,7 @@ export default function TVDropZone() {
   const [, dropRef] = useDrop({
     accept: 'VIDEO_THUMB',
     drop: (item: { id: string }) => {
-      router.push(`/videos/${item.id}`);
+      router.push(`/band/${item.id}`);
     },
   });
 
@@ -26,11 +26,10 @@ export default function TVDropZone() {
         marginBottom: 16,
       }}
     >
-      <Image
+      <img
         src={'/images/tv-dropzone.jpg'}
         alt='tv-background'
-        fill
-        className='object-cover'
+        className='size-full object-cover'
       />
     </div>
   );

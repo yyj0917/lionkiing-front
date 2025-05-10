@@ -32,11 +32,10 @@ export default function MoreVideos({
             }}
           >
             <div className='relative w-25 h-auto flex flex-col justify-center items-start gap-2 overflow-x-auto scrollbar-hide aspect-square'>
-              <Image
+              <img
                 src={item.band.image}
                 alt='more-videos'
-                fill
-                className='object-cover rounded-xl'
+                className='size-full object-cover rounded-xl'
               />
             </div>
             <div className='flex flex-col justify-start items-start gap-1 text-white'>
