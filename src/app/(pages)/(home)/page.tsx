@@ -6,6 +6,7 @@ import TVDropZone from './_components/tv-dropzone';
 import MainSection from './_components/main-section';
 import { CircleChevronRight } from 'lucide-react';
 import Link from 'next/link';
+
 export default async function HomePage() {
   const bandFinalInfo = await getBandFinalInfo();
   const bandPreliminaryInfo = await getBandPreliminaryInfo();
