@@ -28,7 +28,7 @@ export default async function HomePage() {
       />
 
       {/* Search Bar */}
-      <SearchBar />
+      {/* <SearchBar /> */}
       {/* header text */}
       <header className='w-full h-auto flex justify-start items-center gap-3'>
         <p className='text-2xl font-bold text-primary-yellow'>2025 청춘무대</p>

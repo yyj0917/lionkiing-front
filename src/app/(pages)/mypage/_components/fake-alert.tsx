@@ -17,26 +17,27 @@ export function FakeAlert() {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <button className='absolute bottom-[-150px] right-4 hover:border-gray-600 hover:text-gray-600 transition-all duration-300 cursor-pointer bg-white rounded-full p-2 border-2 border-gray-300'>
+        <button className='absolute top-0 right-4 hover:border-gray-600 hover:text-gray-600 transition-all duration-300 cursor-pointer bg-white rounded-full p-2 border-2 border-gray-300'>
           <KeySquare className=' size-8 opacity-25 ' />
         </button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className='w-[300px]'>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Fake!</AlertDialogTitle>
           <AlertDialogDescription>
             <Image
               src='/images/fake-key.jpeg'
               alt='mypage-background'
-              width={200}
+              width={300}
               height={200}
               className='object-contain'
             />
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogCancel className='w-full cursor-pointer'>
+            😭😭😭😭😭
+          </AlertDialogCancel>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -14,7 +14,7 @@ const GNB = () => {
 
   return (
     <nav className='fixed bottom-0 left-0 right-0 z-50'>
-      <div className='min-w-[360px] max-w-[415px] lg:max-w-[375px] mx-auto px-4 bg-primary-blue rounded-b-4xl'>
+      <div className='min-w-[360px] max-w-[415px] lg:max-w-[375px] mx-auto px-4 bg-black/80 rounded-b-4xl'>
         <div className='flex justify-around items-center h-16'>
           <Link href='/' className='flex flex-col items-center'>
             <House

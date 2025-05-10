@@ -6,14 +6,6 @@ import { useEffect } from 'react';
 export default function ProfileInfo() {
   const user = mockUser;
 
-  useEffect(() => {
-    const fetchUserVote = async () => {
-      const userVote = await getUserVote();
-      console.log(userVote);
-    };
-    fetchUserVote();
-  }, []);
-
   return (
     <div className='relative w-full h-[30%]'>
       <div
