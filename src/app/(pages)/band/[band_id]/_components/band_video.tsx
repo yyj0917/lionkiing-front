@@ -6,9 +6,6 @@ export default function Video() {
   return (
     <div className='w-full h-full flex justify-center items-center'>
       <div className='flex justify-center items-start w-full aspect-[16/9] bg-red-100 relative'>
-        <div className='absolute top-0 z-1'>
-          <BackButton />
-        </div>
         <video
           className='w-full aspect-[16/9] shadow-md'
           controls
