@@ -82,7 +82,7 @@ export default function PreSuspenseComponent() {
           <button
             key={index}
             className={`w-13 h-10 rounded-full animate-pulse ${voteButtonColor[index]}`}
-            // onClick={() => handleVote(String(videoId))}
+            onClick={() => handleVote(String(videoId))}
           ></button>
         ))}
       </div>
