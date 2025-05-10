@@ -14,7 +14,7 @@ export default function MyPage() {
       console.log(userVote);
       setVideoList(userVote);
     };
-    fetchUserVote();
+    void fetchUserVote();
   }, []);
   return (
     <div className='w-full h-full flex flex-col'>

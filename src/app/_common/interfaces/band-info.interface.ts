@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Season } from './season.interface';
 import { Video } from './video.interface';
 

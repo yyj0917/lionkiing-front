@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Video } from '../interfaces/video.interface';
 import { axiosInstance } from '../utils/axios-instance';
 

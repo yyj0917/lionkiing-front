@@ -13,7 +13,6 @@ export default function BandCard({
   finalBandDetail: BandFinalInfo;
   isDragPreview?: boolean;
 }) {
-  const handleBandClick = () => {};
   const [{ isDragging }, dragRef] = useDrag({
     type: 'VIDEO_THUMB',
     item: { id: finalBandDetail.id },
@@ -26,7 +25,6 @@ export default function BandCard({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3 }}
-      onClick={handleBandClick}
     >
       <Image
         ref={dragRef as unknown as React.RefObject<HTMLImageElement>}

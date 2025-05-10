@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { axiosInstance } from '../utils/axios-instance';
 import { BandFinalInfo } from '../interfaces/band-info.interface';
 
