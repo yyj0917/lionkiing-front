@@ -19,10 +19,9 @@
 | 분류       | 기술 상세 |
 |------------|-----------|
 | **Frontend** | Next.js 14 (App Router)<br>React Hooks<br>Tailwind CSS<br>typeScript|
-| **Drag & Drop** | React DnD (HTML5 Backend) |
 | **HTTP Client** | Axios |
 | **State** | useState, useEffect 등 React 기본 훅 |
-| **API 연동** | RESTful API<br>Mock ID 기반 인증 |
+
 
 ---
 
