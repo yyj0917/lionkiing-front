@@ -1,20 +1,24 @@
 'use client';
 
 import { useState } from 'react';
+import { submitVotes } from '@/app/_common/apis/submit-votes';
 
 interface VoteModalProps {
   artistId: string;
   onClose: () => void;
-  onVoteSuccess: (newScore: number) => void;
+  mileage: number;
+  onVoteSuccess: (newScore: number, usedMileage: number) => void;
 }
 
 export default function VoteModal({
   artistId,
   onClose,
+  mileage,
   onVoteSuccess,
 }: VoteModalProps) {
   const [point, setPoint] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -38,12 +42,23 @@ export default function VoteModal({
       return;
     }
 
+    if (numericPoint > mileage) {
+      setError('보유 마일리지를 초과할 수 없습니다.');
+      return;
+    }
+
     try {
-      // 실제 서버 연동은 이 부분에서 진행
-      const updatedScore = 0 + numericPoint; // 예시 응답 처리
-      onVoteSuccess(updatedScore); // ✅ 성공 시 처리
+      setLoading(true);
+      const { newScore, usedMileage } = await submitVotes(
+        artistId,
+        numericPoint,
+      );
+      onVoteSuccess(newScore, usedMileage);
+      onClose(); // 투표 후 모달 닫기
     } catch (err) {
       setError('투표에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,7 +74,8 @@ export default function VoteModal({
 
         <h2 className='text-xl font-bold mb-2'>마일리지</h2>
         <p className='text-sm text-gray-500 mb-4 text-[12px]'>
-          마일리지는 최소 1점, 최대 50점 부여 가능합니다!
+          마일리지는 최소 1점, 최대 50점까지 입력할 수 있으며, 현재 보유한
+          마일리지는 {mileage}점입니다.
         </p>
 
         <div className='flex items-center justify-center mt-4'>
@@ -83,9 +99,12 @@ export default function VoteModal({
 
         <button
           onClick={handleSubmit}
-          className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-full mt-4'
+          disabled={loading}
+          className={`w-full mt-4 px-4 py-2 rounded text-white ${
+            loading ? 'bg-gray-400' : 'bg-blue-500 hover:bg-blue-600'
+          }`}
         >
-          투표하기
+          {loading ? '투표 중...' : '투표하기'}
         </button>
       </div>
     </div>
