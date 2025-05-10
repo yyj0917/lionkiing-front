@@ -29,7 +29,8 @@
 https://lionkiing-front.vercel.app/
 
 📸 화면 예시
-![image](https://github.com/user-attachments/assets/5be0bede-0a6b-4c08-a546-ac059c45a86a)
+![image](https://github.com/user-attachments/assets/c692ab16-1d58-40de-b55a-8b9e8a45eca4)
+
 
 
 
