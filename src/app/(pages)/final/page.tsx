@@ -1,25 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ArtistGrid from './_components/ArtistGrid';
 import PageHeader from './_components/PageHeader';
 import VoteModal from './_components/VoteModal';
+import { getBandFinalInfo } from '@/app/_common/apis/band-final-info';
+import { BandFinalInfo } from '@/app/_common/interfaces/band-info.interface';
 
-const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
-  id: `${i + 1}`,
-  name: `이름 ${i + 1}`,
-  image: '/image/dog.png',
-  score: 0,
-}));
+interface Artist {
+  id: string;
+  name: string;
+  image: string;
+  score: number;
+}
 
 export default function Final() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [artists, setArtists] = useState(mockArtists);
+  const [artists, setArtists] = useState<Artist[]>([]);
   const [votedIds, setVotedIds] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchArtists = async () => {
+      const bandData: BandFinalInfo[] = await getBandFinalInfo();
+
+      const mapped = bandData.map(band => ({
+        id: band.id,
+        name: band.band.name,
+        image: band.band.image,
+        score: band.voteCount ?? 0,
+      }));
+
+      setArtists(mapped);
+    };
+
+    fetchArtists();
+  }, []);
 
   const handleVote = (id: string) => {
     setSelectedId(id);
-    console.log('s');
   };
 
   const closeModal = () => {
