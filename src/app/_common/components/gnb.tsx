@@ -49,12 +49,10 @@ const GNB = () => {
                 )}
                 strokeWidth={3}
               />
-              <Image
+              <img
                 src={`/images/gnb-background.jpg`}
                 alt={item.href}
-                width={40}
-                height={40}
-                className='absolute top-0 left-0'
+                className='size-10 absolute top-0 left-0'
               />
             </Link>
           ))}

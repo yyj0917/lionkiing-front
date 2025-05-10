@@ -27,38 +27,30 @@ export default function bandDetail() {
     void fetchVideoDetail();
   }, [param.band_id]);
 
-  const ReactPlayer = dynamic(() => import('react-player'), {
-    ssr: false, // 서버에선 빈 자리에 fallback(없음)만 찍힘
-  });
-
   return (
-    <div>
-      <div className='w-full min-h-screen flex justify-center items-start flex-col gap-1 bg-[url("/images/main-background.jpg")]'>
-        <div className='absolute top-0 z-1'>
-          <BackButton />
-        </div>
-        <div className='w-full flex-1 flex-col'>
-          <Video url={video?.url ?? ''} />
-          <Detail
-            song_description={video?.song_description ?? ''}
-            band={video?.band.name ?? ''}
-            album_cover={video?.album_cover ?? ''}
-          />
-        </div>
-        <div className=' w-full aspect-[3/2] p-2'>
-          <div>
-            <img
-              className='w-full aspect-[3/2] rounded-[5%]'
-              src={video?.band.image ?? ''}
-              alt='프로필'
-            />
-          </div>
-        </div>
-        <Info
-          band={video?.band.description ?? ''}
-          song_description={video?.song_description ?? ''}
+    <div className='w-full flex justify-center items-start flex-col gap-1 bg-[url("/images/main-background.jpg")] rounded-4xl'>
+      <div className='absolute top-0 z-1 p-2'>
+        <BackButton />
+      </div>
+      <div className='w-full flex-1 flex-col rounded-t-4xl'>
+        <Video url={video?.url ?? ''} />
+        <Detail
+          song_title={video?.song_title ?? ''}
+          band={video?.band.name}
+          album_cover={video?.album_cover ?? ''}
         />
       </div>
+      <div className=' w-full aspect-[3/2] pt-2'>
+        <img
+          className='w-full aspect-[3/2] rounded-[5%]'
+          src={video?.band.image}
+          alt='프로필'
+        />
+      </div>
+      <Info
+        band={video?.band.description ?? ''}
+        song_description={video?.song_description ?? ''}
+      />
     </div>
   );
 }

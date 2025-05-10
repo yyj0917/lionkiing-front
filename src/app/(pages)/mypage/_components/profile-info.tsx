@@ -26,14 +26,12 @@ export default function ProfileInfo() {
       />
       <div className='absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-b-xl pointer-events-none'></div>
       <div className='px-8 py-2 absolute bottom-2  w-full h-auto flex items-end justify-start gap-4'>
-        <Image
+        <img
           src={
             'https://velog.velcdn.com/images/bokdol11859/post/7410acc4-0834-4e64-ba57-6a22173c261c/image.png'
           }
           alt='profile'
-          width={100}
-          height={100}
-          className='rounded-2xl'
+          className='size-[100px] rounded-2xl'
         />
         <div className='flex flex-col gap-2 text-primary-yellow'>
           <h2>{user.name}</h2>

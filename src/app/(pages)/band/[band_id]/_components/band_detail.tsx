@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Detail({
-  song_description,
+  song_title,
   album_cover,
   band,
 }: {
-  song_description: string;
+  song_title: string;
   album_cover: string;
   band: string;
 }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted && !album_cover) return null;
+
   return (
     <div className='w-full h-full relative flex justify-center items-center'>
       {/* 🔽 배경 그라데이션 레이어 */}
@@ -20,10 +28,10 @@ export default function Detail({
           <div className='flex justify-between items-center p-3'>
             <div className='flex items-center gap-4'>
               <div className='w-16'>
-                <img src={album_cover} alt='앨범커버' />
+                {album_cover && <img src={album_cover} alt='앨범커버' />}
               </div>
               <div className='flex flex-col justify-center'>
-                <div className='text-l text-white'>{song_description}</div>
+                <div className='text-l text-white'>{song_title}</div>
                 <div className='text-m text-white'>{band}</div>
               </div>
             </div>

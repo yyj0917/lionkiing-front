@@ -26,14 +26,13 @@ export default function BandCard({
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3 }}
     >
-      <Image
+      <img
         ref={dragRef as unknown as React.RefObject<HTMLImageElement>}
         src={finalBandDetail.band.image}
         alt={finalBandDetail.band.name}
-        fill
         className={
           'z-20' +
-          'object-cover rounded-xl cursor-grab' +
+          'size-full object-cover rounded-xl cursor-grab' +
           (isDragging ? ' opacity-0' : '')
         }
       />

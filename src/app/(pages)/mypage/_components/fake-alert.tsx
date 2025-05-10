@@ -25,7 +25,7 @@ export function FakeAlert() {
         <AlertDialogHeader>
           <AlertDialogTitle>Fake!</AlertDialogTitle>
           <AlertDialogDescription>
-            <Image
+            <img
               src='/images/fake-key.jpeg'
               alt='mypage-background'
               width={300}
