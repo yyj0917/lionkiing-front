@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '../styles/globals.css';
 import GNB from './_common/components/gnb';
 
 export const metadata: Metadata = {
