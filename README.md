@@ -27,10 +27,7 @@
 
 
 📸 화면 예시
-![스크린샷 2025-05-11 074418](https://github.com/user-attachments/assets/1cd95c81-5248-4868-96b2-fd8f7c1da270)
-![스크린샷 2025-05-11 074705](https://github.com/user-attachments/assets/5217004a-f59e-470e-bfd8-30d7a6fced04)
-![스크린샷 2025-05-11 074722](https://github.com/user-attachments/assets/c5f7fee8-9ca0-4d01-96c9-2e8df48406d6)
-![Uploading 스크린샷 2025-05-11 074736.png…]()
+![스크린샷 2025-05-11 075051](https://github.com/user-attachments/assets/4910c22f-7155-4174-b336-f3076613d78a)
 
 
 🧐[청춘무대.pdf](https://github.com/user-attachments/files/20144087/default.pdf)
