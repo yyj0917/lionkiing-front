@@ -15,7 +15,7 @@ const mockArtists = Array.from({ length: 12 }).map((_, i) => ({
 export default function Final() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [artists, setArtists] = useState(mockArtists);
-  const [votedIds, setVotedIds] = useState<string[]>([]); // ✅ 투표 완료 id 저장
+  const [votedIds, setVotedIds] = useState<string[]>([]);
 
   const handleVote = (id: string) => {
     setSelectedId(id);
