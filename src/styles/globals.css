@@ -131,7 +131,7 @@
     @apply border-border outline-ring/50;
   }
   * {
-    font-family: 'SF_HambakSnow', sans-serif;
+    font-family: 'PartialSansKR-Regular', sans-serif;
     font-style: normal;
   }
   body {
@@ -139,9 +139,9 @@
   }
 }
 @font-face {
-  font-family: 'SF_HambakSnow';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff')
-    format('woff');
+  font-family: 'PartialSansKR-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -168,4 +168,7 @@
 .scrollbar-hide::-webkit-scrollbar {
   /* Chrome, Safari, Opera용 */
   display: none;
+}
+.y.mandatory-scroll-snapping {
+  scroll-snap-type: y mandatory;
 }

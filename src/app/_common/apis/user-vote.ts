@@ -16,3 +16,18 @@ export const getUserVote = async (): Promise<Video[]> => {
     return [];
   }
 };
+
+export const voteVideo = async (videoId: string, count: number) => {
+  try {
+    const response = await axiosInstance.post(`/votes/${videoId}`, {
+      headers: {
+        Authorization: MOCK_USER_ID,
+      },
+      count: 1,
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

@@ -27,7 +27,10 @@
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.0.0",
     "react-player": "^2.16.0",
+<<<<<<< HEAD
+=======
     "react-icons": "^5.5.0",
+>>>>>>> 91302181dbdbf12d41bdb58b112c717c05f75a3d
     "react-router-dom": "^7.6.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
