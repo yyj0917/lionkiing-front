@@ -12,6 +12,16 @@ export interface BandFinalInfo {
   id: string;
   url: string;
   song_description: string;
+  voteCount: number;
+  votes: any[];
+  season: Season;
+  band: Band;
+}
+export interface BandPreliminaryInfo {
+  id: string;
+  url: string;
+  song_description: string;
+  voteCount: number;
   votes: any[];
   season: Season;
   band: Band;

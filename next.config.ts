@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['i.namu.wiki', 'velog.velcdn.com'],
   },
+  reactStrictMode: false,
   /* config options here */
   webpack(config) {
     config.module.rules.push({

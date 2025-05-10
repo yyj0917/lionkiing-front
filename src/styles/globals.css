@@ -169,3 +169,6 @@
   /* Chrome, Safari, Opera용 */
   display: none;
 }
+.y.mandatory-scroll-snapping {
+  scroll-snap-type: y mandatory;
+}
