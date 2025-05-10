@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 interface ArtistCardProps {
   name: string;
   score: number;
@@ -11,6 +13,12 @@ export default function ArtistCard({
   image,
   onVote,
 }: ArtistCardProps) {
+  const [voted, setVoted] = useState(false);
+
+  const handleVote = () => {
+    onVote();
+    setVoted(true);
+  };
   return (
     <div>
       <img
@@ -20,10 +28,15 @@ export default function ArtistCard({
       <p className='font-bold text-center'>{name}</p>
       <p className='text-sm text-center'>점수:{score}</p>
       <button
-        onClick={onVote}
-        className='mt-1 bg-gray-500 text-white text-sm px-3 py-1 rounded-md'
+        onClick={handleVote}
+        className={`mt-1 text-white text-sm px-3 py-1 rounded-md ${
+          voted
+            ? 'bg-green-500 cursor-not-allowed'
+            : 'bg-gray-500 hover:bg-gray-600'
+        }`}
+        disabled={voted}
       >
-        투표하기
+        {voted ? '투표완료' : '투표하기'}
       </button>
     </div>
   );
