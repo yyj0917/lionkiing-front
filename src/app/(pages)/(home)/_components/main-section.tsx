@@ -13,7 +13,7 @@ export default function MainSection({
 }) {
   return (
     <DndProvider backend={HTML5Backend}>
-      <main className='pt-4 pb-10 w-full h-auto flex flex-col items-center gap-6'>
+      <main className='pt-4 w-full h-auto flex flex-col items-center gap-6'>
         <TVDropZone />
         <RankBoard bandFinalInfo={bandFinalInfo} />
         <MoreVideos />
