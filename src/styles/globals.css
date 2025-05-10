@@ -10,6 +10,11 @@
 
   --color-secondary-yellow: #ffd54f;
   --color-secondary-blue: #4250b5;
+
+  --color-silver: #c0c0c0; /* rgb(192, 192, 192) */
+
+  /* Bronze */
+  --color-bronze: #cd7f32; /* rgb(205, 127,  50) */
 }
 
 @theme inline {
@@ -139,4 +144,28 @@
     format('woff');
   font-weight: normal;
   font-style: normal;
+}
+.main::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/festival-main.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+}
+.scrollbar-hide {
+  /* IE, Edge용 */
+  -ms-overflow-style: none;
+  /* Firefox용 */
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  /* Chrome, Safari, Opera용 */
+  display: none;
 }

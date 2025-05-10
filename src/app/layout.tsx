@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='w-screen h-screen'>
-        <main className='min-w-[360px] max-w-[415px] lg:max-w-[375px] h-screen mx-auto bg-gray-100 rounded-4xl'>
+        <main className='min-w-[360px] max-w-[415px] lg:max-w-[375px] h-screen mx-auto rounded-4xl'>
           {children}
           <GNB />
         </main>
