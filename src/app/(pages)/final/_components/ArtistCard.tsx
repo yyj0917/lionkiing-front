@@ -43,8 +43,8 @@ export default function ArtistCard({
         onClick={handleVote}
         className={`mt-1 text-white text-sm px-3 py-1 rounded-md ${
           voted
-            ? 'bg-green-500 cursor-not-allowed'
-            : 'bg-gray-500 hover:bg-gray-600'
+            ? 'bg-green-400 cursor-not-allowed'
+            : 'bg-gray-400 hover:bg-gray-600'
         }`}
         disabled={voted}
       >
